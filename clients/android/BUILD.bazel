@@ -1,3 +1,6 @@
+load(":resolved_main_dependencies.bzl", "generate_android_main_transitive_dependency_rules")
+generate_android_main_transitive_dependency_rules()
+
 load("//rules/maven_deps:maven_deps_workspace_generator.bzl", "deps_workspace_generator_rule")
 load(":maven_dependencies.bzl", "ANDROID_MAIN_DEPENDENCIES")
 
@@ -5,4 +8,5 @@ load(":maven_dependencies.bzl", "ANDROID_MAIN_DEPENDENCIES")
 deps_workspace_generator_rule(name = 'android_main_deps',
     maven_deps = ANDROID_MAIN_DEPENDENCIES,
     output_deps_file_path = 'clients/android/resolved_main_dependencies.bzl',
-    deps_prefix = 'android_main___')
+    rule_prefix = 'android',
+    macro_prefix = 'android_main')

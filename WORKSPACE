@@ -44,6 +44,12 @@ http_archive(
 	strip_prefix = "migration-tooling-master",
 )
 
+# Clients deps
+# Android
+load("//clients/android:resolved_main_dependencies.bzl", "generate_android_main_workspace_rules")
+generate_android_main_workspace_rules()
+
+
 # Maven deps
 load("//others/migration-tooling:dependencies.bzl", "generate_migration_tools_workspace_rules")
 generate_migration_tools_workspace_rules()
