@@ -66,6 +66,7 @@ bazel-genfiles
 bazel-navajo-chat
 bazel-out
 bazel-testlogs
+.aswb/
 
 # macOS
 .DS_Store

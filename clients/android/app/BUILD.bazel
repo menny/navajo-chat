@@ -1,0 +1,24 @@
+android_binary(
+    name = "app",
+    visibility = ["//visibility:public"],
+    manifest = "AndroidManifest.xml",
+    srcs = glob(["**/*.java"]),
+    custom_package = "net.evendanan.navajo",
+    resource_files = glob(["res/**/*"]),
+    deps = [
+        "//clients/android/parent",
+        "//clients/android/theme",
+        "//clients/android:android___androidx_appcompat__appcompat",
+        "//clients/android/welcome/ui",
+        "//clients/android:android___androidx_annotation__annotation",
+        "//clients/android:android___com_github_menny_Chauffeur__permissions",
+        "//clients/android:android___androidx_fragment__fragment",
+    ],
+    manifest_values = {
+        "versionCode" : "1",
+        "versionName" : "v0.0.1",
+        "minSdkVersion" : "19",
+        "targetSdkVersion" : "28",
+        "compileSdkVersion" : "28"
+    }
+)

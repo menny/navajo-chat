@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Navajo" parent="Theme.AppCompat.DayNight">
+        <item name="colorAccent">@color/navajo_white</item>
+    </style>
+
+    <style name="Navajo.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorAccent">@color/navajo_white</item>
+    </style>
+</resources>

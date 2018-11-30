@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="net.evendanan.navajo.welcome.ui">
+
+    <uses-sdk
+        android:minSdkVersion="${minSdkVersion}"
+        android:targetSdkVersion="${targetSdkVersion}" />
+
+    <application>
+        <activity
+            android:name="net.evendanan.navajo.welcome.ui.WelcomeActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Navajo.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+    </application>
+</manifest>
