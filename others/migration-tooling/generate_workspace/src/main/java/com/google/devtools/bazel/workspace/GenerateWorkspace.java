@@ -16,6 +16,7 @@ package com.google.devtools.bazel.workspace;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.google.common.base.Preconditions;
 import com.google.devtools.bazel.workspace.maven.DefaultModelResolver;
 import com.google.devtools.bazel.workspace.maven.Resolver;
 import com.google.devtools.bazel.workspace.maven.Rule;
@@ -72,6 +73,7 @@ public class GenerateWorkspace {
     private static List<Repository> buildRepositories(List<String> repositories) {
         ArrayList<Repository> repositoryList = new ArrayList<>(repositories.size());
         for (String repositoryUrlString : repositories) {
+            Preconditions.checkState(repositoryUrlString.endsWith("/"), "Repository url '%s' should end with '/'", repositoryUrlString);
             final Repository repository = new Repository();
             URI repositoryUri = URI.create(repositoryUrlString);
             repository.setId(repositoryUri.getHost());

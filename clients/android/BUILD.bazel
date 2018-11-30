@@ -7,6 +7,15 @@ load(":maven_dependencies.bzl", "ANDROID_MAIN_DEPENDENCIES")
 # Regenerate resolved dependencies file: bazel run //clients/android:android_main_deps
 deps_workspace_generator_rule(name = 'android_main_deps',
     maven_deps = ANDROID_MAIN_DEPENDENCIES,
+    repositories = [
+                'https://maven.google.com/',
+                'https://jcenter.bintray.com/',
+                'https://repo1.maven.org/maven2/',
+                'https://jitpack.io/',
+            ],
+    maven_exclude_deps = [
+        'com.android.support'
+    ],
     output_deps_file_path = 'clients/android/resolved_main_dependencies.bzl',
     rule_prefix = 'android',
     macro_prefix = 'android_main')

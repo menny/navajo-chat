@@ -181,7 +181,7 @@ public final class Rule implements Comparable<Rule> {
     }
 
     public String getUrl() {
-        Preconditions.checkState(repository.endsWith("/"));
+        Preconditions.checkState(repository.endsWith("/"), "Repository url '%s' should end with '/'", repository);
         return repository + getUri();
     }
 
@@ -216,5 +216,13 @@ public final class Rule implements Comparable<Rule> {
 
     public String classifier() {
         return artifact.getClassifier();
+    }
+
+    public void setRepository(final String url) {
+        repository = url;
+    }
+
+    public String getRepository() {
+        return repository;
     }
 }

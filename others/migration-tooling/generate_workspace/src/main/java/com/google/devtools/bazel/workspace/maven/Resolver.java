@@ -66,6 +66,10 @@ public class Resolver {
         return dependency.getGroupId() + ":" + dependency.getArtifactId();
     }
 
+    private static String unversionedCoordinateGroup(Dependency dependency) {
+        return dependency.getGroupId();
+    }
+
     private static String unversionedCoordinate(Exclusion exclusion) {
         return exclusion.getGroupId() + ":" + exclusion.getArtifactId();
     }
@@ -104,7 +108,7 @@ public class Resolver {
      * Resolves an artifact as a root of a dependency graph.
      */
     public void resolveRuleArtifacts(Rule rule) {
-        ModelSource modelSource;
+        DefaultModelResolver.RepoModelSource modelSource;
         try {
             modelSource = modelResolver.resolveModel(rule.getArtifact());
         } catch (UnresolvableModelException e) {
@@ -112,9 +116,10 @@ public class Resolver {
             return;
         }
 
-        Model model = modelResolver.getEffectiveModel(modelSource);
+        Model model = modelResolver.getEffectiveModel(modelSource.getModelSource());
         if (model != null) {
             rule.setPackaging(model.getPackaging());
+            rule.setRepository(modelSource.getRepository().getUrl());
             traverseDeps(model, Sets.newHashSet(), Sets.newHashSet(), rule);
         }
     }
@@ -182,11 +187,11 @@ public class Resolver {
         if (dependency.isOptional()) {
             return;
         }
-        if (exclusions.contains(unversionedCoordinate(dependency))) {
+        if (exclusions.contains(unversionedCoordinate(dependency)) || exclusions.contains(unversionedCoordinateGroup(dependency))) {
             return;
         }
 
-        if (blacklist.contains(unversionedCoordinate(dependency))) {
+        if (blacklist.contains(unversionedCoordinate(dependency)) || blacklist.contains(unversionedCoordinateGroup(dependency))) {
             return;
         }
 
@@ -200,13 +205,14 @@ public class Resolver {
 
             boolean isNewDependency = addArtifact(artifactRule, model.toString());
             if (isNewDependency) {
-                ModelSource depModelSource = modelResolver.resolveModel(
+                DefaultModelResolver.RepoModelSource depModelSource = modelResolver.resolveModel(
                     dependency.getGroupId(), dependency.getArtifactId(), dependency.getClassifier() == null ? "" : dependency.getClassifier(), dependency.getVersion());
                 if (depModelSource != null) {
                     //artifactRule.setRepository(depModelSource.getLocation());
-                    Model depModel = modelResolver.getEffectiveModel(depModelSource);
+                    Model depModel = modelResolver.getEffectiveModel(depModelSource.getModelSource());
                     if (depModel != null) {
                         artifactRule.setPackaging(depModel.getPackaging());
+                        artifactRule.setRepository(depModelSource.getRepository().getUrl());
                         traverseDeps(depModel, topLevelScopes, localDepExclusions, artifactRule);
                     }
                 } else {
@@ -243,6 +249,7 @@ public class Resolver {
             }
 
             dependency.setPackaging(existingDependency.packaging());
+            dependency.setRepository(existingDependency.getRepository());
             return false;
         }
 

@@ -55,7 +55,7 @@ public class DefaultModelResolver implements ModelResolver {
         MethodHandles.lookup().lookupClass().getName());
 
     private final Collection<Repository> repositories;
-    private final Map<String, ModelSource> ruleNameToModelSource;
+    private final Map<String, RepoModelSource> ruleNameToModelSource;
     private final DefaultModelBuilder modelBuilder;
     private final VersionResolver versionResolver;
 
@@ -68,7 +68,7 @@ public class DefaultModelResolver implements ModelResolver {
         );
     }
 
-    private DefaultModelResolver(Collection<Repository> repositories, Map<String, ModelSource> ruleNameToModelSource,
+    private DefaultModelResolver(Collection<Repository> repositories, Map<String, RepoModelSource> ruleNameToModelSource,
                                  DefaultModelBuilder modelBuilder) {
         this.repositories = repositories;
         this.ruleNameToModelSource = ruleNameToModelSource;
@@ -80,17 +80,17 @@ public class DefaultModelResolver implements ModelResolver {
         this.versionResolver = new VersionResolver(aether);
     }
 
-    public ModelSource resolveModel(Artifact artifact) throws UnresolvableModelException {
+    public RepoModelSource resolveModel(Artifact artifact) throws UnresolvableModelException {
         return resolveModel(artifact.getGroupId(), artifact.getArtifactId(), artifact.getClassifier(), artifact.getVersion());
     }
 
     @Override
     public ModelSource resolveModel(String groupId, String artifactId, String version)
         throws UnresolvableModelException {
-        return resolveModel(groupId, artifactId, "", version);
+        return resolveModel(groupId, artifactId, "", version).modelSource;
     }
 
-    public ModelSource resolveModel(String groupId, String artifactId, String classifier, String version)
+    public RepoModelSource resolveModel(String groupId, String artifactId, String classifier, String version)
         throws UnresolvableModelException {
         String ruleName = Rule.generateFullName(groupId, artifactId, version);
         if (ruleNameToModelSource.containsKey(ruleName)) {
@@ -100,7 +100,9 @@ public class DefaultModelResolver implements ModelResolver {
             UrlModelSource modelSource = getModelSource(
                 repository.getUrl(), groupId, artifactId, classifier, version);
             if (modelSource != null) {
-                return modelSource;
+                final RepoModelSource repoModelSource = new RepoModelSource(modelSource, repository);
+                ruleNameToModelSource.put(Rule.generateFullName(groupId, artifactId, version), repoModelSource);
+                return repoModelSource;
             }
         }
 
@@ -128,9 +130,7 @@ public class DefaultModelResolver implements ModelResolver {
                                  + groupId.replaceAll("\\.", "/") + "/" + artifactId + "/" + version + "/" + artifactId
                                  + "-" + version + ".pom");
             if (pomFileExists(urlUrl)) {
-                UrlModelSource urlModelSource = new UrlModelSource(urlUrl);
-                ruleNameToModelSource.put(Rule.generateFullName(groupId, artifactId, version), urlModelSource);
-                return urlModelSource;
+                return new UrlModelSource(urlUrl);
             }
         } catch (MalformedURLException e) {
             throw new UnresolvableModelException("Bad URL " + url + ": " + e.getMessage(), groupId,
@@ -162,9 +162,9 @@ public class DefaultModelResolver implements ModelResolver {
     }
 
     // For compatibility with older versions of ModelResolver which don't have this method,
-    // don't add @Override.
+    @Override
     public ModelSource resolveModel(Parent parent) throws UnresolvableModelException {
-        return resolveModel(parent.getGroupId(), parent.getArtifactId(), "", parent.getVersion());
+        return resolveModel(parent.getGroupId(), parent.getArtifactId(), "", parent.getVersion()).modelSource;
     }
 
     // For compatibility with older versions of ModelResolver which don't have this method,
@@ -209,5 +209,23 @@ public class DefaultModelResolver implements ModelResolver {
         }
 
         return model;
+    }
+
+    public static class RepoModelSource {
+        private final ModelSource modelSource;
+        private final Repository repository;
+
+        private RepoModelSource(final ModelSource modelSource, final Repository repository) {
+            this.modelSource = modelSource;
+            this.repository = repository;
+        }
+
+        public ModelSource getModelSource() {
+            return modelSource;
+        }
+
+        public Repository getRepository() {
+            return repository;
+        }
     }
 }
