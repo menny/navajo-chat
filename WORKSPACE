@@ -1,7 +1,7 @@
 workspace(name="navajo")
 
 ### http_archive
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file", "http_archive")
 
 ### Android SDK
 android_sdk_repository(
@@ -36,17 +36,6 @@ http_archive(
     urls = ["https://github.com/protocolbuffers/protobuf/archive/javalite.zip"],
 )
 
-### Migration tools deps
-#load("//others/migration-tooling/third_party:manual_workspace.bzl", "migration_tooling_workspace_rules")
-#migration_tooling_workspace_rules()
-
-http_archive(
-	name = "trans_maven_jar",
-	url = "https://github.com/bazelbuild/migration-tooling/archive/master.zip",
-	type = "zip",
-	strip_prefix = "migration-tooling-master",
-)
-
 # Clients deps
 # Android
 load("//clients/android:resolved_main_dependencies.bzl", "generate_android_main_workspace_rules")
@@ -56,3 +45,8 @@ generate_android_main_workspace_rules()
 # Maven deps
 load("//others/migration-tooling:dependencies.bzl", "generate_migration_tools_workspace_rules")
 generate_migration_tools_workspace_rules()
+
+
+# JUnit 5
+load("//tests:resolved_dependencies.bzl", "generate_junit5_deps_workspace_rules")
+generate_junit5_deps_workspace_rules()

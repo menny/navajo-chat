@@ -3,58 +3,68 @@
 # generate_workspace --repository=https://maven.google.com/ --repository=https://jcenter.bintray.com/ --repository=https://repo1.maven.org/maven2/ --repository=https://jitpack.io/ --artifact=com.google.guava:guava:27.0-android --artifact=com.google.code.findbugs:jsr305:3.0.2 --artifact=javax.annotation:jsr250-api:1.0 --artifact=com.github.menny.Chauffeur:permissions:90e7032 --artifact=androidx.fragment:fragment:1.1.0-alpha01 --artifact=androidx.appcompat:appcompat:1.0.2 --artifact=androidx.annotation:annotation:1.0.0 --artifact=io.reactivex.rxjava2:rxjava:2.2.4 --artifact=io.reactivex.rxjava2:rxandroid:2.1.0 --artifact=com.spotify.mobius:mobius-core:1.2.0 --artifact=com.spotify.mobius:mobius-rx2:1.2.0 --artifact=com.spotify.mobius:mobius-android:1.2.0 --artifact=com.spotify.mobius:mobius-extras:1.2.0 --blacklist=com.android.support --rule_prefix=android --macro_prefix=android_main
 
 
+load('@bazel_tools//tools/build_defs/repo:http.bzl', 'http_file')
+
 def generate_android_main_workspace_rules():
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___com_google_guava__failureaccess",
-      url = "https://jcenter.bintray.com/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar",
+      urls = ["https://jcenter.bintray.com/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar"],
+      downloaded_file_path = "failureaccess-1.0.jar",
   )
 
 
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___com_google_errorprone__error_prone_annotations",
-      url = "https://jcenter.bintray.com/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar",
+      urls = ["https://jcenter.bintray.com/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar"],
+      downloaded_file_path = "error_prone_annotations-2.2.0.jar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___com_spotify_mobius__mobius_extras",
-      url = "https://jcenter.bintray.com/com/spotify/mobius/mobius-extras/1.2.0/mobius-extras-1.2.0.jar",
+      urls = ["https://jcenter.bintray.com/com/spotify/mobius/mobius-extras/1.2.0/mobius-extras-1.2.0.jar"],
+      downloaded_file_path = "mobius-extras-1.2.0.jar",
   )
 
 
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___com_google_guava__listenablefuture",
-      url = "https://jcenter.bintray.com/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
+      urls = ["https://jcenter.bintray.com/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar"],
+      downloaded_file_path = "listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___com_google_guava__guava",
-      url = "https://jcenter.bintray.com/com/google/guava/guava/27.0-android/guava-27.0-android.jar",
+      urls = ["https://jcenter.bintray.com/com/google/guava/guava/27.0-android/guava-27.0-android.jar"],
+      downloaded_file_path = "guava-27.0-android.jar",
   )
 
 
   # com.spotify.mobius:mobius-android:aar:1.2.0 got requested version
   # com.spotify.mobius:mobius-extras:jar:1.2.0 got requested version
   # com.spotify.mobius:mobius-core:jar:1.2.0
-  native.http_file(
+  http_file(
       name = "android___org_slf4j__slf4j_api",
-      url = "https://jcenter.bintray.com/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar",
+      urls = ["https://jcenter.bintray.com/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"],
+      downloaded_file_path = "slf4j-api-1.7.25.jar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___javax_annotation__jsr250_api",
-      url = "https://jcenter.bintray.com/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar",
+      urls = ["https://jcenter.bintray.com/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar"],
+      downloaded_file_path = "jsr250-api-1.0.jar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___com_spotify_mobius__mobius_rx2",
-      url = "https://jcenter.bintray.com/com/spotify/mobius/mobius-rx2/1.2.0/mobius-rx2-1.2.0.jar",
+      urls = ["https://jcenter.bintray.com/com/spotify/mobius/mobius-rx2/1.2.0/mobius-rx2-1.2.0.jar"],
+      downloaded_file_path = "mobius-rx2-1.2.0.jar",
   )
 
 
@@ -87,50 +97,56 @@ def generate_android_main_workspace_rules():
   # androidx.arch.core:core-runtime:aar:2.0.0 got requested version
   # androidx.lifecycle:lifecycle-common:jar:2.0.0 got requested version
   # androidx.localbroadcastmanager:localbroadcastmanager:aar:1.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_annotation__annotation",
-      url = "https://maven.google.com/androidx/annotation/annotation/1.0.0/annotation-1.0.0.jar",
+      urls = ["https://maven.google.com/androidx/annotation/annotation/1.0.0/annotation-1.0.0.jar"],
+      downloaded_file_path = "annotation-1.0.0.jar",
   )
 
 
   # io.reactivex.rxjava2:rxandroid:aar:2.1.0 wanted version 2.2.0
   # com.spotify.mobius:mobius-rx2:jar:1.2.0 wanted version 2.1.9
-  native.http_file(
+  http_file(
       name = "android___io_reactivex_rxjava2__rxjava",
-      url = "https://jcenter.bintray.com/io/reactivex/rxjava2/rxjava/2.2.4/rxjava-2.2.4.jar",
+      urls = ["https://jcenter.bintray.com/io/reactivex/rxjava2/rxjava/2.2.4/rxjava-2.2.4.jar"],
+      downloaded_file_path = "rxjava-2.2.4.jar",
   )
 
 
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___org_codehaus_mojo__animal_sniffer_annotations",
-      url = "https://jcenter.bintray.com/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar",
+      urls = ["https://jcenter.bintray.com/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar"],
+      downloaded_file_path = "animal-sniffer-annotations-1.17.jar",
   )
 
 
   # androidx.core:core:aar:1.1.0-alpha01
   # androidx.versionedparcelable:versionedparcelable:aar:1.1.0-alpha01 got requested version
   # androidx.appcompat:appcompat:aar:1.0.2 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_collection__collection",
-      url = "https://maven.google.com/androidx/collection/collection/1.0.0/collection-1.0.0.jar",
+      urls = ["https://maven.google.com/androidx/collection/collection/1.0.0/collection-1.0.0.jar"],
+      downloaded_file_path = "collection-1.0.0.jar",
   )
 
 
   # com.spotify.mobius:mobius-android:aar:1.2.0 got requested version
   # com.spotify.mobius:mobius-extras:jar:1.2.0 got requested version
   # com.spotify.mobius:mobius-rx2:jar:1.2.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___com_spotify_mobius__mobius_core",
-      url = "https://jcenter.bintray.com/com/spotify/mobius/mobius-core/1.2.0/mobius-core-1.2.0.jar",
+      urls = ["https://jcenter.bintray.com/com/spotify/mobius/mobius-core/1.2.0/mobius-core-1.2.0.jar"],
+      downloaded_file_path = "mobius-core-1.2.0.jar",
   )
 
 
   # androidx.lifecycle:lifecycle-runtime:aar:2.0.0
   # androidx.lifecycle:lifecycle-livedata-core:aar:2.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_lifecycle__lifecycle_common",
-      url = "https://maven.google.com/androidx/lifecycle/lifecycle-common/2.0.0/lifecycle-common-2.0.0.jar",
+      urls = ["https://maven.google.com/androidx/lifecycle/lifecycle-common/2.0.0/lifecycle-common-2.0.0.jar"],
+      downloaded_file_path = "lifecycle-common-2.0.0.jar",
   )
 
 
@@ -139,30 +155,34 @@ def generate_android_main_workspace_rules():
   # com.google.guava:guava:bundle:27.0-android got requested version
   # com.spotify.mobius:mobius-android:aar:1.2.0 wanted version 3.0.1
   # com.spotify.mobius:mobius-extras:jar:1.2.0 wanted version 3.0.1
-  native.http_file(
+  http_file(
       name = "android___com_google_code_findbugs__jsr305",
-      url = "https://jcenter.bintray.com/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar",
+      urls = ["https://jcenter.bintray.com/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"],
+      downloaded_file_path = "jsr305-3.0.2.jar",
   )
 
 
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___com_google_j2objc__j2objc_annotations",
-      url = "https://jcenter.bintray.com/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar",
+      urls = ["https://jcenter.bintray.com/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar"],
+      downloaded_file_path = "j2objc-annotations-1.1.jar",
   )
 
 
   # com.google.guava:guava:bundle:27.0-android
-  native.http_file(
+  http_file(
       name = "android___org_checkerframework__checker_compat_qual",
-      url = "https://jcenter.bintray.com/org/checkerframework/checker-compat-qual/2.5.2/checker-compat-qual-2.5.2.jar",
+      urls = ["https://jcenter.bintray.com/org/checkerframework/checker-compat-qual/2.5.2/checker-compat-qual-2.5.2.jar"],
+      downloaded_file_path = "checker-compat-qual-2.5.2.jar",
   )
 
 
   # io.reactivex.rxjava2:rxjava:jar:2.2.4
-  native.http_file(
+  http_file(
       name = "android___org_reactivestreams__reactive_streams",
-      url = "https://jcenter.bintray.com/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar",
+      urls = ["https://jcenter.bintray.com/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar"],
+      downloaded_file_path = "reactive-streams-1.0.2.jar",
   )
 
 
@@ -170,156 +190,177 @@ def generate_android_main_workspace_rules():
   # androidx.lifecycle:lifecycle-livedata:aar:2.0.0 got requested version
   # androidx.lifecycle:lifecycle-livedata-core:aar:2.0.0 got requested version
   # androidx.arch.core:core-runtime:aar:2.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_arch_core__core_common",
-      url = "https://maven.google.com/androidx/arch/core/core-common/2.0.0/core-common-2.0.0.jar",
+      urls = ["https://maven.google.com/androidx/arch/core/core-common/2.0.0/core-common-2.0.0.jar"],
+      downloaded_file_path = "core-common-2.0.0.jar",
   )
 
 
 
 
   # androidx.legacy:legacy-support-core-utils:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_localbroadcastmanager__localbroadcastmanager",
-      url = "https://maven.google.com/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.aar"],
+      downloaded_file_path = "localbroadcastmanager-1.0.0.aar",
   )
 
 
   # androidx.loader:loader:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_lifecycle__lifecycle_livedata",
-      url = "https://maven.google.com/androidx/lifecycle/lifecycle-livedata/2.0.0/lifecycle-livedata-2.0.0.aar",
+      urls = ["https://maven.google.com/androidx/lifecycle/lifecycle-livedata/2.0.0/lifecycle-livedata-2.0.0.aar"],
+      downloaded_file_path = "lifecycle-livedata-2.0.0.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_coordinatorlayout__coordinatorlayout",
-      url = "https://maven.google.com/androidx/coordinatorlayout/coordinatorlayout/1.0.0/coordinatorlayout-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/coordinatorlayout/coordinatorlayout/1.0.0/coordinatorlayout-1.0.0.aar"],
+      downloaded_file_path = "coordinatorlayout-1.0.0.aar",
   )
 
 
   # androidx.appcompat:appcompat:aar:1.0.2
   # androidx.vectordrawable:vectordrawable-animated:aar:1.0.0 wanted version 1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_vectordrawable__vectordrawable",
-      url = "https://maven.google.com/androidx/vectordrawable/vectordrawable/1.0.1/vectordrawable-1.0.1.aar",
+      urls = ["https://maven.google.com/androidx/vectordrawable/vectordrawable/1.0.1/vectordrawable-1.0.1.aar"],
+      downloaded_file_path = "vectordrawable-1.0.1.aar",
   )
 
 
   # androidx.core:core:aar:1.1.0-alpha01
-  native.http_file(
+  http_file(
       name = "android___androidx_versionedparcelable__versionedparcelable",
-      url = "https://maven.google.com/androidx/versionedparcelable/versionedparcelable/1.1.0-alpha01/versionedparcelable-1.1.0-alpha01.aar",
+      urls = ["https://maven.google.com/androidx/versionedparcelable/versionedparcelable/1.1.0-alpha01/versionedparcelable-1.1.0-alpha01.aar"],
+      downloaded_file_path = "versionedparcelable-1.1.0-alpha01.aar",
   )
 
 
   # androidx.swiperefreshlayout:swiperefreshlayout:aar:1.0.0 got requested version
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_interpolator__interpolator",
-      url = "https://maven.google.com/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar"],
+      downloaded_file_path = "interpolator-1.0.0.aar",
   )
 
 
   # com.github.menny.Chauffeur:lib:aar:90e7032 got requested version
   # com.github.menny.Chauffeur:permissions:aar:90e7032 got requested version
   # androidx.appcompat:appcompat:aar:1.0.2 wanted version 1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_fragment__fragment",
-      url = "https://maven.google.com/androidx/fragment/fragment/1.1.0-alpha01/fragment-1.1.0-alpha01.aar",
+      urls = ["https://maven.google.com/androidx/fragment/fragment/1.1.0-alpha01/fragment-1.1.0-alpha01.aar"],
+      downloaded_file_path = "fragment-1.1.0-alpha01.aar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___com_spotify_mobius__mobius_android",
-      url = "https://jcenter.bintray.com/com/spotify/mobius/mobius-android/1.2.0/mobius-android-1.2.0.aar",
+      urls = ["https://jcenter.bintray.com/com/spotify/mobius/mobius-android/1.2.0/mobius-android-1.2.0.aar"],
+      downloaded_file_path = "mobius-android-1.2.0.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_asynclayoutinflater__asynclayoutinflater",
-      url = "https://maven.google.com/androidx/asynclayoutinflater/asynclayoutinflater/1.0.0/asynclayoutinflater-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/asynclayoutinflater/asynclayoutinflater/1.0.0/asynclayoutinflater-1.0.0.aar"],
+      downloaded_file_path = "asynclayoutinflater-1.0.0.aar",
   )
 
 
   # androidx.lifecycle:lifecycle-livedata:aar:2.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_lifecycle__lifecycle_livedata_core",
-      url = "https://maven.google.com/androidx/lifecycle/lifecycle-livedata-core/2.0.0/lifecycle-livedata-core-2.0.0.aar",
+      urls = ["https://maven.google.com/androidx/lifecycle/lifecycle-livedata-core/2.0.0/lifecycle-livedata-core-2.0.0.aar"],
+      downloaded_file_path = "lifecycle-livedata-core-2.0.0.aar",
   )
 
 
   # androidx.appcompat:appcompat:aar:1.0.2
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_cursoradapter__cursoradapter",
-      url = "https://maven.google.com/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.aar"],
+      downloaded_file_path = "cursoradapter-1.0.0.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_swiperefreshlayout__swiperefreshlayout",
-      url = "https://maven.google.com/androidx/swiperefreshlayout/swiperefreshlayout/1.0.0/swiperefreshlayout-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/swiperefreshlayout/swiperefreshlayout/1.0.0/swiperefreshlayout-1.0.0.aar"],
+      downloaded_file_path = "swiperefreshlayout-1.0.0.aar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___io_reactivex_rxjava2__rxandroid",
-      url = "https://jcenter.bintray.com/io/reactivex/rxjava2/rxandroid/2.1.0/rxandroid-2.1.0.aar",
+      urls = ["https://jcenter.bintray.com/io/reactivex/rxjava2/rxandroid/2.1.0/rxandroid-2.1.0.aar"],
+      downloaded_file_path = "rxandroid-2.1.0.aar",
   )
 
 
   # androidx.appcompat:appcompat:aar:1.0.2
-  native.http_file(
+  http_file(
       name = "android___androidx_vectordrawable__vectordrawable_animated",
-      url = "https://maven.google.com/androidx/vectordrawable/vectordrawable-animated/1.0.0/vectordrawable-animated-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/vectordrawable/vectordrawable-animated/1.0.0/vectordrawable-animated-1.0.0.aar"],
+      downloaded_file_path = "vectordrawable-animated-1.0.0.aar",
   )
 
 
   # com.github.menny.Chauffeur:permissions:aar:90e7032
-  native.http_file(
+  http_file(
       name = "android___com_github_menny_Chauffeur__lib",
-      url = "https://jitpack.io/com/github/menny/Chauffeur/lib/90e7032/lib-90e7032.aar",
+      urls = ["https://jitpack.io/com/github/menny/Chauffeur/lib/90e7032/lib-90e7032.aar"],
+      downloaded_file_path = "lib-90e7032.aar",
   )
 
 
   # androidx.fragment:fragment:aar:1.1.0-alpha01
-  native.http_file(
+  http_file(
       name = "android___androidx_activity__activity",
-      url = "https://maven.google.com/androidx/activity/activity/1.0.0-alpha01/activity-1.0.0-alpha01.aar",
+      urls = ["https://maven.google.com/androidx/activity/activity/1.0.0-alpha01/activity-1.0.0-alpha01.aar"],
+      downloaded_file_path = "activity-1.0.0-alpha01.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-utils:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_print__print",
-      url = "https://maven.google.com/androidx/print/print/1.0.0/print-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/print/print/1.0.0/print-1.0.0.aar"],
+      downloaded_file_path = "print-1.0.0.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_slidingpanelayout__slidingpanelayout",
-      url = "https://maven.google.com/androidx/slidingpanelayout/slidingpanelayout/1.0.0/slidingpanelayout-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/slidingpanelayout/slidingpanelayout/1.0.0/slidingpanelayout-1.0.0.aar"],
+      downloaded_file_path = "slidingpanelayout-1.0.0.aar",
   )
 
 
   # androidx.fragment:fragment:aar:1.1.0-alpha01
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_viewpager__viewpager",
-      url = "https://maven.google.com/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar"],
+      downloaded_file_path = "viewpager-1.0.0.aar",
   )
 
 
   # androidx.lifecycle:lifecycle-livedata:aar:2.0.0
   # androidx.lifecycle:lifecycle-livedata-core:aar:2.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_arch_core__core_runtime",
-      url = "https://maven.google.com/androidx/arch/core/core-runtime/2.0.0/core-runtime-2.0.0.aar",
+      urls = ["https://maven.google.com/androidx/arch/core/core-runtime/2.0.0/core-runtime-2.0.0.aar"],
+      downloaded_file_path = "core-runtime-2.0.0.aar",
   )
 
 
@@ -337,54 +378,61 @@ def generate_android_main_workspace_rules():
   # androidx.fragment:fragment:aar:1.1.0-alpha01
   # androidx.appcompat:appcompat:aar:1.0.2 wanted version 1.0.1
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0 wanted version 1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_core__core",
-      url = "https://maven.google.com/androidx/core/core/1.1.0-alpha01/core-1.1.0-alpha01.aar",
+      urls = ["https://maven.google.com/androidx/core/core/1.1.0-alpha01/core-1.1.0-alpha01.aar"],
+      downloaded_file_path = "core-1.1.0-alpha01.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-utils:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_documentfile__documentfile",
-      url = "https://maven.google.com/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.aar"],
+      downloaded_file_path = "documentfile-1.0.0.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-utils:aar:1.0.0 got requested version
   # androidx.fragment:fragment:aar:1.1.0-alpha01
-  native.http_file(
+  http_file(
       name = "android___androidx_loader__loader",
-      url = "https://maven.google.com/androidx/loader/loader/1.0.0/loader-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/loader/loader/1.0.0/loader-1.0.0.aar"],
+      downloaded_file_path = "loader-1.0.0.aar",
   )
 
 
-  native.http_file(
+  http_file(
       name = "android___com_github_menny_Chauffeur__permissions",
-      url = "https://jitpack.io/com/github/menny/Chauffeur/permissions/90e7032/permissions-90e7032.aar",
+      urls = ["https://jitpack.io/com/github/menny/Chauffeur/permissions/90e7032/permissions-90e7032.aar"],
+      downloaded_file_path = "permissions-90e7032.aar",
   )
 
 
   # com.github.menny.Chauffeur:lib:aar:90e7032 got requested version
   # com.github.menny.Chauffeur:permissions:aar:90e7032 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_appcompat__appcompat",
-      url = "https://maven.google.com/androidx/appcompat/appcompat/1.0.2/appcompat-1.0.2.aar",
+      urls = ["https://maven.google.com/androidx/appcompat/appcompat/1.0.2/appcompat-1.0.2.aar"],
+      downloaded_file_path = "appcompat-1.0.2.aar",
   )
 
 
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_drawerlayout__drawerlayout",
-      url = "https://maven.google.com/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.aar"],
+      downloaded_file_path = "drawerlayout-1.0.0.aar",
   )
 
 
   # androidx.activity:activity:aar:1.0.0-alpha01 got requested version
   # androidx.fragment:fragment:aar:1.1.0-alpha01 got requested version
   # androidx.loader:loader:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_lifecycle__lifecycle_viewmodel",
-      url = "https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel/2.0.0/lifecycle-viewmodel-2.0.0.aar",
+      urls = ["https://maven.google.com/androidx/lifecycle/lifecycle-viewmodel/2.0.0/lifecycle-viewmodel-2.0.0.aar"],
+      downloaded_file_path = "lifecycle-viewmodel-2.0.0.aar",
   )
 
 
@@ -393,32 +441,36 @@ def generate_android_main_workspace_rules():
   # androidx.slidingpanelayout:slidingpanelayout:aar:1.0.0 got requested version
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0 got requested version
   # androidx.drawerlayout:drawerlayout:aar:1.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_customview__customview",
-      url = "https://maven.google.com/androidx/customview/customview/1.0.0/customview-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/customview/customview/1.0.0/customview-1.0.0.aar"],
+      downloaded_file_path = "customview-1.0.0.aar",
   )
 
 
   # androidx.vectordrawable:vectordrawable-animated:aar:1.0.0
-  native.http_file(
+  http_file(
       name = "android___androidx_legacy__legacy_support_core_ui",
-      url = "https://maven.google.com/androidx/legacy/legacy-support-core-ui/1.0.0/legacy-support-core-ui-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/legacy/legacy-support-core-ui/1.0.0/legacy-support-core-ui-1.0.0.aar"],
+      downloaded_file_path = "legacy-support-core-ui-1.0.0.aar",
   )
 
 
   # androidx.activity:activity:aar:1.0.0-alpha01 got requested version
   # androidx.core:core:aar:1.1.0-alpha01
-  native.http_file(
+  http_file(
       name = "android___androidx_lifecycle__lifecycle_runtime",
-      url = "https://maven.google.com/androidx/lifecycle/lifecycle-runtime/2.0.0/lifecycle-runtime-2.0.0.aar",
+      urls = ["https://maven.google.com/androidx/lifecycle/lifecycle-runtime/2.0.0/lifecycle-runtime-2.0.0.aar"],
+      downloaded_file_path = "lifecycle-runtime-2.0.0.aar",
   )
 
 
   # androidx.appcompat:appcompat:aar:1.0.2
   # androidx.legacy:legacy-support-core-ui:aar:1.0.0 got requested version
-  native.http_file(
+  http_file(
       name = "android___androidx_legacy__legacy_support_core_utils",
-      url = "https://maven.google.com/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.aar",
+      urls = ["https://maven.google.com/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.aar"],
+      downloaded_file_path = "legacy-support-core-utils-1.0.0.aar",
   )
 
 

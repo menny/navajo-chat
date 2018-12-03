@@ -68,6 +68,9 @@ public class BzlWriter extends AbstractWriter {
 
         writeHeader(outputStream, argv);
 
+        outputStream.println("load('@bazel_tools//tools/build_defs/repo:http.bzl', 'http_file')");
+        outputStream.println();
+
         // flat workspace rules
         outputStream.print("def generate_");
         outputStream.print(macrosPrefix);

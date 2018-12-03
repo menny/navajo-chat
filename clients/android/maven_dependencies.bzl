@@ -1,6 +1,6 @@
 ANDROID_MAIN_DEPENDENCIES = [
         'com.google.guava:guava:27.0-android',
-		'com.google.code.findbugs:jsr305:3.0.2',
+        'com.google.code.findbugs:jsr305:3.0.2',
         'javax.annotation:jsr250-api:1.0',
 
         'com.github.menny.Chauffeur:permissions:90e7032',

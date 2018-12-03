@@ -42,11 +42,19 @@ public abstract class AbstractWriter {
         for (String parent : rule.getParents()) {
             builder.append(indent).append("# ").append(parent).append('\n');
         }
-        builder.append(indent).append("native.http_file").append("(\n");
+        builder.append(indent).append("http_file").append("(\n");
         builder.append(indent).append("    name = \"").append(rule.safeRuleFriendlyName()).append("\",\n");
-        builder.append(indent).append("    url = \"").append(rule.getUrl()).append("\",\n");
+        builder.append(indent).append("    urls = [\"").append(rule.getUrl()).append("\"],\n");
+        builder.append(indent).append("    downloaded_file_path = \"").append(getFilenameFromUrl(rule.getUrl())).append("\",\n");
         builder.append(indent).append(")\n\n");
         return builder.toString();
+    }
+
+    private static String getFilenameFromUrl(String url) {
+        int lastPathSeparator = url.lastIndexOf("/");
+        if (lastPathSeparator < 0) throw new IllegalArgumentException("Could not parse filename out of URL '" + url + "'");
+
+        return url.substring(lastPathSeparator + 1);
     }
 
     /**
