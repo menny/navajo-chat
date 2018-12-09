@@ -1,14 +1,32 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/navajo_white"
     tools:context="net.evendanan.navajo.welcome.ui.WelcomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ViewFlipper
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/welcome_view_flipper"
+        android:animateFirstView="true"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="5"
+        android:autoStart="false">
+        <include layout="@layout/what_is_navajo_1" />
+        <include layout="@layout/what_is_navajo_2" />
+        <include layout="@layout/what_is_navajo_3" />
+    </ViewFlipper>
+    m
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/feather"
+        android:drawablePadding="8dp"
         android:text="@string/welcome_to_navajo_title" />
 
-</FrameLayout>
+</LinearLayout>

@@ -7,6 +7,10 @@ android_library(
         "//clients/android:android___com_github_menny_Chauffeur__permissions",
         "//clients/android:android___androidx_fragment__fragment",
         "//clients/android:android___androidx_appcompat__appcompat",
+
+        "//clients/android/welcome/bl",
+        "//clients/android/mobius",
+        "//clients/android:android___com_spotify_mobius__mobius_android"
     ],
     custom_package = "net.evendanan.navajo.welcome.ui",
     resource_files = glob(["res/**/*.xml"]),
