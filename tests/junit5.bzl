@@ -67,7 +67,7 @@ def kt_junit5_test(name, srcs, test_class, friends, deps = [], runtime_deps = []
     kt_jvm_test(
         name = name,
         srcs = srcs,
-        main_class = "org.junit.platform.console.ConsoleLauncher --fail-if-no-tests --select-class=" + test_class,
+        main_class = "org.junit.platform.console.ConsoleLauncher --fail-if-no-tests --disable-ansi-colors --select-class=" + test_class,
         deps = deps + RESOLVED_JUNIT_MAVEN_DEPS,
         runtime_deps = runtime_deps + RESOLVED_JUNIT_MAVEN_DEPS,
         friends = friends,
