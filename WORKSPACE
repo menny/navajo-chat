@@ -36,16 +36,16 @@ http_archive(
     urls = ["https://github.com/protocolbuffers/protobuf/archive/javalite.zip"],
 )
 
-# Bazel MVN Deps
-bazel_mvn_deps_version = "8520fa00db54279a72d357954ed617ad6d109bf7"
+# Bazel Maven Deps (https://github.com/menny/bazel-mvn-deps)
+bazel_mvn_deps_version = "08bd8e7a9f328a03154aabe90d9b9d8010c2515e"
 http_archive(
     name = "bazel_mvn_deps_rule",
     urls = ["https://github.com/menny/bazel-mvn-deps/archive/%s.zip" % bazel_mvn_deps_version],
     type = "zip",
     strip_prefix = "bazel-mvn-deps-%s" % bazel_mvn_deps_version
 )
-load("@bazel_mvn_deps_rule//others/migration-tooling:dependencies.bzl", "generate_migration_tools_workspace_rules")
-generate_migration_tools_workspace_rules()
+load("@bazel_mvn_deps_rule//resolver:bazel_mvn_deps_dependencies.bzl", "generate_bazel_mvn_deps_workspace_rules")
+generate_bazel_mvn_deps_workspace_rules()
 
 # Clients deps
 # Android

@@ -1,8 +1,9 @@
 android_library(
     name = "ui",
-    srcs = glob(['**/*.java']),
+    srcs = glob(['*.java']),
     deps = [
         "//clients/android/parent",
+        "//clients/android/theme",
         "//clients/android:android___androidx_annotation__annotation",
         "//clients/android:android___com_github_menny_Chauffeur__permissions",
         "//clients/android:android___androidx_fragment__fragment",
