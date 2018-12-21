@@ -17,4 +17,5 @@ ANDROID_MAIN_DEPENDENCIES = [
         'com.spotify.mobius:mobius-android:1.2.0',
         'com.spotify.mobius:mobius-extras:1.2.0',
 
+        'io.mockk:mockk:1.8.13.kotlin13',
 ]

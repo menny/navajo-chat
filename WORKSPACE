@@ -11,10 +11,10 @@ android_sdk_repository(
 
 
 ### Kotlin rules
-rules_kotlin_version = "92a3cfc08f7f7551ddc1bf92cdc6defb1080b5ff"
+rules_kotlin_version = "no-src-support"
 http_archive(
     name = "io_bazel_rules_kotlin",
-    urls = ["https://github.com/bazelbuild/rules_kotlin/archive/%s.zip" % rules_kotlin_version],
+    urls = ["https://github.com/menny/rules_kotlin/archive/%s.zip" % rules_kotlin_version],
     type = "zip",
     strip_prefix = "rules_kotlin-%s" % rules_kotlin_version
 )
@@ -37,7 +37,7 @@ http_archive(
 )
 
 # Bazel Maven Deps (https://github.com/menny/bazel-mvn-deps)
-bazel_mvn_deps_version = "08bd8e7a9f328a03154aabe90d9b9d8010c2515e"
+bazel_mvn_deps_version = "87a73806acbd5e9b7e09ff7c8f5efea632816deb"
 http_archive(
     name = "bazel_mvn_deps_rule",
     urls = ["https://github.com/menny/bazel-mvn-deps/archive/%s.zip" % bazel_mvn_deps_version],
