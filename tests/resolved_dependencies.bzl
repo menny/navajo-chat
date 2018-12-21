@@ -116,7 +116,11 @@ def generate_junit5_deps_transitive_dependency_rules(kt_jvm_import=None, kt_jvm_
     )
     kt_jvm_library(
         name = "junit5___org_junit_jupiter__junit-jupiter-params__5_3_2",
+<<<<<<< HEAD
         deps = [
+=======
+        runtime_deps = [
+>>>>>>> Updating deps with Kotlin support
             ":junit5___org_apiguardian__apiguardian_api",
             ":junit5___org_junit_jupiter__junit-jupiter-params__5_3_2_kotlin_jar",
             ":junit5___org_junit_jupiter__junit_jupiter_api",
@@ -178,7 +182,11 @@ def generate_junit5_deps_transitive_dependency_rules(kt_jvm_import=None, kt_jvm_
     )
     kt_jvm_library(
         name = "junit5___org_junit_jupiter__junit-jupiter-api__5_3_2",
+<<<<<<< HEAD
         deps = [
+=======
+        runtime_deps = [
+>>>>>>> Updating deps with Kotlin support
             ":junit5___org_apiguardian__apiguardian_api",
             ":junit5___org_junit_jupiter__junit-jupiter-api__5_3_2_kotlin_jar",
             ":junit5___org_junit_platform__junit_platform_commons",

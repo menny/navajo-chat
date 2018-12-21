@@ -652,7 +652,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-agent-api__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-agent-api__1_8_13_kotlin13_kotlin_jar",
         ],
     )
@@ -670,7 +670,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk__1_8_13_kotlin13_kotlin_jar",
             ":android___io_mockk__mockk_agent_jvm",
             ":android___io_mockk__mockk_common",
@@ -790,7 +790,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-common__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-common__1_8_13_kotlin13_kotlin_jar",
             ":android___io_mockk__mockk_dsl",
         ],
@@ -1075,14 +1075,12 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-agent-jvm__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-agent-jvm__1_8_13_kotlin13_kotlin_jar",
             ":android___io_mockk__mockk_agent_api",
             ":android___io_mockk__mockk_agent_common",
             ":android___net_bytebuddy__byte_buddy",
             ":android___org_objenesis__objenesis",
-        ],
-        runtime_deps = [
             ":android___net_bytebuddy__byte_buddy_agent",
         ],
         exports = [
@@ -1146,7 +1144,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-dsl-jvm__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-dsl-jvm__1_8_13_kotlin13_kotlin_jar",
             ":android___io_mockk__mockk_dsl",
             ":android___org_jetbrains_kotlin__kotlin_reflect",
@@ -1206,7 +1204,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-dsl__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-dsl__1_8_13_kotlin13_kotlin_jar",
         ],
     )
@@ -1430,7 +1428,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___io_mockk__mockk-agent-common__1_8_13_kotlin13",
-        deps = [
+        runtime_deps = [
             ":android___io_mockk__mockk-agent-common__1_8_13_kotlin13_kotlin_jar",
             ":android___io_mockk__mockk_agent_api",
         ],
@@ -1674,7 +1672,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___org_jetbrains_kotlin__kotlin-reflect__1_3_0",
-        deps = [
+        runtime_deps = [
             ":android___org_jetbrains_kotlin__kotlin-reflect__1_3_0_kotlin_jar",
             ":android___org_jetbrains_kotlin__kotlin_stdlib",
         ],
@@ -1728,7 +1726,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___org_jetbrains_kotlin__kotlin-stdlib__1_3_0",
-        deps = [
+        runtime_deps = [
             ":android___org_jetbrains__annotations",
             ":android___org_jetbrains_kotlin__kotlin-stdlib__1_3_0_kotlin_jar",
             ":android___org_jetbrains_kotlin__kotlin_stdlib_common",
@@ -1830,7 +1828,7 @@ def generate_android_main_transitive_dependency_rules(kt_jvm_import=None, kt_jvm
     )
     kt_jvm_library(
         name = "android___org_jetbrains_kotlin__kotlin-stdlib-common__1_3_0",
-        deps = [
+        runtime_deps = [
             ":android___org_jetbrains_kotlin__kotlin-stdlib-common__1_3_0_kotlin_jar",
         ],
     )
