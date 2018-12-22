@@ -37,7 +37,7 @@ http_archive(
 )
 
 # Bazel Maven Deps (https://github.com/menny/bazel-mvn-deps)
-bazel_mvn_deps_version = "eadd56fae47b4eb7a05484f6bb6c7a484b3801c1"
+bazel_mvn_deps_version = "3d2c360b54e03d549684753e1de8b1a19fd5a0d5"
 http_archive(
     name = "bazel_mvn_deps_rule",
     urls = ["https://github.com/menny/bazel-mvn-deps/archive/%s.zip" % bazel_mvn_deps_version],

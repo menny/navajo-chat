@@ -18,6 +18,5 @@ kt_junit5_test(
     friends = [":mobius"],
     visibility = ["//visibility:public"],
     srcs = ["tests/MobiusTests.kt"],
-    deps = ["//clients/android:android___io_mockk__mockk"],
     test_class = "net.evendanan.navajo.mobius.tests.MobiusTests",
 )

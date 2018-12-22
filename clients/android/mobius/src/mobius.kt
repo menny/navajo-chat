@@ -6,7 +6,8 @@ import com.spotify.mobius.EventSource
 import com.spotify.mobius.disposables.Disposable
 import com.spotify.mobius.functions.Consumer
 
-private fun <V> noOpConsumer(doNotCare: V) {}
+@Suppress("UNUSED_PARAMETER")
+private fun <V> noOpConsumer(doNotCare: V) = Unit
 
 open class SimpleEventSource<E> : EventSource<E> {
     private var eventConsumer: (E) -> Unit = ::noOpConsumer
