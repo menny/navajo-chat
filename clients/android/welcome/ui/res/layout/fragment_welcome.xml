@@ -15,6 +15,7 @@
         android:animateFirstView="true"
         android:layout_width="match_parent"
         android:layout_height="0px"
+        anima
         android:layout_weight="5"
         android:autoStart="false">
         <include layout="@layout/what_is_navajo_1" />

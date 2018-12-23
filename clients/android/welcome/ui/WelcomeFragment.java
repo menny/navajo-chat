@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ViewFlipper;
 
 import com.spotify.mobius.MobiusLoop;
 import com.spotify.mobius.android.runners.MainThreadWorkRunner;
@@ -31,7 +32,7 @@ public class WelcomeFragment extends Fragment {
 
     private final Handler mTimingHandler = new Handler();
     private Disposable mDisposable = () -> { };
-    private View mWhatIsNavajoFlipper;
+    private ViewFlipper mWhatIsNavajoFlipper;
 
     public WelcomeFragment() {
     }
@@ -54,7 +55,7 @@ public class WelcomeFragment extends Fragment {
 
     @NonNull
     private static Model resolveStartModel(Bundle savedInstanceState) {
-        if (savedInstanceState.containsKey(WELCOME_MOBIUS_MODEL_BUNDLE_TICKS_KEY)) {
+        if (savedInstanceState != null && savedInstanceState.containsKey(WELCOME_MOBIUS_MODEL_BUNDLE_TICKS_KEY)) {
             return new Model(savedInstanceState.getInt(WELCOME_MOBIUS_MODEL_BUNDLE_TICKS_KEY));
         } else {
             return new Model();
@@ -84,11 +85,18 @@ public class WelcomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mDisposable = mMobius.observe(this::onMobiusModelChanged);
-        mTimingHandler.postDelayed(() -> mEventSource.dispatchEvent(Event.SecondTicked.INSTANCE), mEventSource, 1000);
+        onSecondTick();
+    }
+
+    private void onSecondTick() {
+        mEventSource.dispatchEvent(Event.SecondTicked.INSTANCE);
+        mTimingHandler.postDelayed(this::onSecondTick, mEventSource, 1000);
     }
 
     private void onMobiusModelChanged(Model model) {
-
+        if (mWhatIsNavajoFlipper.getDisplayedChild() != model.getWhatIsNavajoSlideIndex()) {
+            mWhatIsNavajoFlipper.setDisplayedChild(model.getWhatIsNavajoSlideIndex());
+        }
     }
 
     @Override
