@@ -1,0 +1,81 @@
+version: 2.0
+
+references:
+
+  container_config: &container_config
+    docker:
+      - image: menny/android_bazel:1.10.0
+
+    working_directory: /opt/workspace/
+
+  base_environment: &base_environment
+    TERM: dumb
+
+  general_cache_key: &general_cache_key
+    key: navajo-{{ checksum "WORKSPACE" }}-{{ checksum "clients/android/resolved_main_dependencies.bzl"}}-{{ checksum ".bazelrc"}}
+
+  test_cache_key: &test_cache_key
+    key: navajo-test-{{ checksum "WORKSPACE" }}-{{ checksum "clients/android/resolved_main_dependencies.bzl"}}-{{ checksum ".bazelrc"}}
+
+  cache_paths: &cache_paths
+    paths:
+      - "bazel-bin"
+      - "bazel-genfiles"
+      - "bazel-navajo-chat"
+      - "bazel-out"
+      - "bazel-testlogs"
+      - "/opt/android-sdk-linux/licenses/"
+
+jobs:
+
+  build:
+    <<: *container_config
+    environment:
+      <<: *base_environment
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *general_cache_key
+
+      - run:
+          name: Build
+          command: bazel build //...
+
+      - store_artifacts:
+          path: /opt/workspace/bazel-bin/clients/android/app/*.apk
+          destination: apks/
+
+      - save_cache:
+          <<: *general_cache_key
+          <<: *cache_paths
+  test:
+    <<: *container_config
+    environment:
+      <<: *base_environment
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *test_cache_key
+
+      - run:
+          name: Build
+          command: bazel test //...
+
+      - store_artifacts:
+          path: /opt/workspace/bazel-testlogs/**
+          destination: testlogs/
+
+      - save_cache:
+          <<: *test_cache_key
+          <<: *cache_paths
+
+
+workflows:
+  version: 2
+
+  build_check_tests_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
