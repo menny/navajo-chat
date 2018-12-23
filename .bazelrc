@@ -1,5 +1,13 @@
-build --spawn_strategy=standalone --worker_max_instances=4 --android_aapt=aapt --persistent_android_resource_processor
+build --spawn_strategy=standalone
+build --worker_max_instances=4
+build --android_aapt=aapt
+# enabling persistent_android_resource_processor will fail in circle-ci.
+#build --persistent_android_resource_processor
+build --watchfs
+
 test --spawn_strategy=standalone
+test --worker_max_instances=4
 
 # If you have locally required flags, add them to `user.bazelrc`, which is not checked-into git.
 try-import user.bazelrc
+try-import ci.bazelrc

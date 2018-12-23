@@ -3,6 +3,7 @@ version: 2.0
 references:
 
   container_config: &container_config
+    resource_class: medium
     docker:
       - image: menny/android_bazel:1.10.0
 
@@ -11,11 +12,18 @@ references:
   base_environment: &base_environment
     TERM: dumb
 
-  general_cache_key: &general_cache_key
+  setup_bazel_rc_for_ci: &setup_bazel_rc_for_ci
+     name: Setup Circle CI bazelrc
+     command: cp .circleci/ci.bazelrc ci.bazelrc
+
+  cache_key_build: &cache_key_build
     key: navajo-{{ checksum "WORKSPACE" }}-{{ checksum "clients/android/resolved_main_dependencies.bzl"}}-{{ checksum ".bazelrc"}}
 
-  test_cache_key: &test_cache_key
+  cache_key_test: &cache_key_test
     key: navajo-test-{{ checksum "WORKSPACE" }}-{{ checksum "clients/android/resolved_main_dependencies.bzl"}}-{{ checksum ".bazelrc"}}
+
+  cache_key_check: &cache_key_check
+    key: navajo-check-{{ checksum "WORKSPACE" }}-{{ checksum "clients/android/resolved_main_dependencies.bzl"}}-{{ checksum ".bazelrc"}}
 
   cache_paths: &cache_paths
     paths:
@@ -35,7 +43,10 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          <<: *general_cache_key
+          <<: *cache_key_build
+
+      - run:
+          <<: *setup_bazel_rc_for_ci
 
       - run:
           name: Build
@@ -46,7 +57,7 @@ jobs:
           destination: apks/
 
       - save_cache:
-          <<: *general_cache_key
+          <<: *cache_key_build
           <<: *cache_paths
   test:
     <<: *container_config
@@ -55,7 +66,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          <<: *test_cache_key
+          <<: *cache_key_test
+      - run:
+          <<: *setup_bazel_rc_for_ci
 
       - run:
           name: Build
@@ -66,9 +79,31 @@ jobs:
           destination: testlogs/
 
       - save_cache:
-          <<: *test_cache_key
+          <<: *cache_key_test
           <<: *cache_paths
 
+  check:
+    <<: *container_config
+    environment:
+      <<: *base_environment
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *cache_key_check
+      - run:
+          <<: *setup_bazel_rc_for_ci
+
+      - run:
+          name: Run build with extra checks
+          command: exit 0
+
+      - store_artifacts:
+          path: /opt/workspace/bazel-testlogs/**
+          destination: testlogs/
+
+      - save_cache:
+          <<: *cache_key_check
+          <<: *cache_paths
 
 workflows:
   version: 2
@@ -77,5 +112,8 @@ workflows:
     jobs:
       - build
       - test:
+          requires:
+            - build
+      - check:
           requires:
             - build
