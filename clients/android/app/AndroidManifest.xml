@@ -16,7 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name">
-        <activity android:name="net.evendanan.navajo.app.LaunchActivity">
+        <activity android:name="net.evendanan.navajo.app.LaunchActivity" android:theme="@style/Navajo.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
