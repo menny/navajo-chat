@@ -15,7 +15,7 @@ public class LaunchActivity extends Activity {
         super.onCreate(savedInstanceState);
         //TODO(menny): check if login is required, if so direct to Welcome, else launch MainActivity
         //For now, we'll just launch welcome.
-        //startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
-        //finish();
+        startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+        finish();
     }
 }

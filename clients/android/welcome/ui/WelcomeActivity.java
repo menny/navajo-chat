@@ -12,12 +12,12 @@ public class WelcomeActivity extends FragmentChauffeurActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_welcome);
+        setContentView(R.layout.activity_full_content);
     }
 
     @Override
     protected int getFragmentRootUiElementId() {
-        return R.id.welcome_root_content;
+        return R.id.activity_root_content;
     }
 
     @NonNull
