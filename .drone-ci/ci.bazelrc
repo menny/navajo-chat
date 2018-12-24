@@ -1,9 +1,1 @@
-build --noshow_progress
-build --worker_max_instances=2
-build --local_resources=3072,2.0,1.0
 build --announce_rc
-build --jvmopt="-Xms2000m"
-
-test --noshow_progress
-test --worker_max_instances=2
-test --jvmopt="-Xms2000m"

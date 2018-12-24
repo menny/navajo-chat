@@ -51,6 +51,8 @@ public class WelcomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mWhatIsNavajoFlipper = view.findViewById(R.id.welcome_view_flipper);
+        view.findViewById(R.id.next_slide_button).setOnClickListener(v -> mEventSource.dispatchEvent(Event.UserClickedNextSlide.INSTANCE));
+        view.findViewById(R.id.prev_slide_button).setOnClickListener(v -> mEventSource.dispatchEvent(Event.UserClickedPreviousSlide.INSTANCE));
     }
 
     @NonNull

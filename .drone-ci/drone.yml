@@ -13,7 +13,7 @@ steps:
   environment:
     TERM: dumb
   commands:
-  - cp .circleci/ci.bazelrc ci.bazelrc
+  - cp .drone-ci/ci.bazelrc ci.bazelrc
   - bazel build //...
 
 - name: test

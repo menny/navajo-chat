@@ -1,33 +1,71 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
-    android:background="@color/navajo_white"
     tools:context="net.evendanan.navajo.welcome.ui.WelcomeFragment">
 
-    <ViewFlipper
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="16dp"
-        android:id="@+id/welcome_view_flipper"
-        android:animateFirstView="true"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        anima
-        android:layout_weight="5"
-        android:autoStart="false">
-        <include layout="@layout/what_is_navajo_1" />
-        <include layout="@layout/what_is_navajo_2" />
-        <include layout="@layout/what_is_navajo_3" />
-    </ViewFlipper>
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/view_flipper_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/prev_slide_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcome_prev_slide_image"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_action_prev_welcome_slide" />
+
+        <ViewFlipper
+            android:id="@+id/welcome_view_flipper"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:animateFirstView="true"
+            android:autoStart="false"
+            android:inAnimation="@android:anim/fade_in"
+            android:outAnimation="@android:anim/fade_out">
+
+            <include layout="@layout/what_is_navajo_1" />
+
+            <include layout="@layout/what_is_navajo_2" />
+
+            <include layout="@layout/what_is_navajo_3" />
+        </ViewFlipper>
+
+        <ImageView
+            android:id="@+id/next_slide_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/welcome_next_slide_image"
+            android:minWidth="48dp"
+            android:src="@drawable/ic_action_next_welcome_slide" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/navajo_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/view_flipper_holder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
         android:drawableStart="@drawable/feather"
         android:drawablePadding="8dp"
         android:text="@string/welcome_to_navajo_title" />
 
-</LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/navajo_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_navajo_large_icon" />
+
+</RelativeLayout>

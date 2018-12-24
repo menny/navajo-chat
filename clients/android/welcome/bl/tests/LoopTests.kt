@@ -9,6 +9,8 @@ import com.spotify.mobius.runners.ImmediateWorkRunner
 import net.evendanan.navajo.welcome.bl.Effect
 import net.evendanan.navajo.welcome.bl.Event
 import net.evendanan.navajo.welcome.bl.Model
+import net.evendanan.navajo.welcome.bl.SECONDS_PER_SLIDE
+import net.evendanan.navajo.welcome.bl.SLIDES_COUNT
 import net.evendanan.navajo.welcome.bl.WelcomeBL
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
@@ -38,8 +40,8 @@ class LoopTests {
         val eventsConsumer = fakeUI.eventsConsumer!!
 
         repeat(4) {
-            repeat(3) { slideIndex ->
-                repeat(8) {
+            repeat(SLIDES_COUNT) { slideIndex ->
+                repeat(SECONDS_PER_SLIDE) {
                     Assertions.assertEquals(slideIndex, mobiusController.mostRecentModel!!.whatIsNavajoSlideIndex)
                     eventsConsumer.accept(Event.SecondTicked)
                 }

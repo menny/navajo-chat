@@ -1,8 +1,11 @@
-# Navajo [![Build Status](https://cloud.drone.io/api/badges/menny/navajo-chat/status.svg)](https://cloud.drone.io/menny/navajo-chat)
-<br/>
-![Logo](assets/web_hi_res_512.png "Najajo")
+# Navajo
+![Logo](assets/web_hi_res_512.png "Navajo")
 
 Instant Messaging
+
+#### CI status
+[![Build Status](https://cloud.drone.io/api/badges/menny/navajo-chat/status.svg)](https://cloud.drone.io/menny/navajo-chat)
+[![CircleCI](https://circleci.com/gh/menny/navajo-chat.svg?style=svg)](https://circleci.com/gh/menny/navajo-chat)
 
 # Building
 You need [Bazel](https://bazel.build/) installed for this. Follow the installation details for your OS [here](https://docs.bazel.build/versions/master/install.html).

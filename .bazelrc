@@ -2,7 +2,7 @@ build --spawn_strategy=standalone
 build --worker_max_instances=4
 build --android_aapt=aapt
 # enabling persistent_android_resource_processor will fail in circle-ci.
-#build --persistent_android_resource_processor
+build --persistent_android_resource_processor
 build --watchfs
 
 test --spawn_strategy=standalone

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <color name="navajo_white">#FFDEAD</color>
+    <color name="navajo_white_accent">#AF8E5D</color>
+    <color name="navajo_dark_white">#CFAE7D</color>
 </resources>

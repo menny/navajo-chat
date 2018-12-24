@@ -1,5 +1,27 @@
-<TextView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="@string/what_is_navajo_2_title_free"/>
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Navajo.Text.Welcome.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_is_navajo_2_title_free" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:contentDescription="@string/what_is_navajo_2_title_free"
+        android:src="@drawable/ic_welcome_slide_free" />
+
+    <TextView
+        style="@style/Navajo.Text.Welcome.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/what_is_navajo_2_text_free" />
+</LinearLayout>
+

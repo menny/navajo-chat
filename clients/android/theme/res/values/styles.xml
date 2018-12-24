@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Navajo" parent="Theme.AppCompat.DayNight">
-        <item name="colorAccent">@color/navajo_white</item>
+
+    <style name="Navajo"
+           parent="Theme.AppCompat.DayNight">
+        <item name="colorAccent">@color/navajo_white_accent</item>
+        <item name="android:windowBackground">@color/navajo_white</item>
+        <item name="android:colorPrimary">@color/navajo_white</item>
+        <item name="android:colorPrimaryDark">@color/navajo_dark_white</item>
     </style>
 
-    <style name="Navajo.NoActionBar" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Navajo.Text">
+        <item name="android:textAppearance">?android:textAppearance</item>
+    </style>
+
+    <style name="Navajo.NoActionBar"
+           parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorAccent">@color/navajo_white</item>
+        <item name="android:colorPrimary">@color/navajo_white</item>
+        <item name="android:colorPrimaryDark">@color/navajo_dark_white</item>
     </style>
 </resources>

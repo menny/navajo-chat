@@ -1,6 +1,12 @@
 <resources>
     <string name="welcome_to_navajo_title">Navajo Chat</string>
     <string name="what_is_navajo_3_title_fast">Fast and lightweight</string>
+    <string name="what_is_navajo_3_text_fast">Navajo was designed to quickly send out messages, nothing more.</string>
     <string name="what_is_navajo_2_title_free">Free and Open-source</string>
+    <string name="what_is_navajo_2_text_free">Navajo is developed in the open, you can always see our code or build it from source.</string>
     <string name="what_is_navajo_1_title_secure">Private and secure</string>
+    <string name="what_is_navajo_1_text_secure">Navajo does not share your data with anyone (well, other than the persons you are chatting with), and any communication is encrypted end-to-end.</string>
+
+    <string name="welcome_prev_slide_image">previous slide</string>
+    <string name="welcome_next_slide_image">next slide</string>
 </resources>

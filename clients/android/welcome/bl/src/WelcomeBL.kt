@@ -9,8 +9,8 @@ import com.spotify.mobius.functions.Consumer
 import com.spotify.mobius.runners.WorkRunner
 import net.evendanan.navajo.mobius.SimpleConnectable
 
-private var SECONDS_PER_SLIDE = 8
-private var SLIDES_COUNT = 3
+var SECONDS_PER_SLIDE = 5
+var SLIDES_COUNT = 3
 
 object WelcomeBL {
     @JvmStatic
