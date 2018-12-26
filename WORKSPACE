@@ -37,21 +37,22 @@ http_archive(
 )
 
 # Bazel Maven Deps (https://github.com/menny/bazel-mvn-deps)
-bazel_mvn_deps_version = "3d2c360b54e03d549684753e1de8b1a19fd5a0d5"
+bazel_mvn_deps_version = "8e0592cf68c498ff1827b2c8dedd3b8d05c985aa"
 http_archive(
     name = "bazel_mvn_deps_rule",
     urls = ["https://github.com/menny/bazel-mvn-deps/archive/%s.zip" % bazel_mvn_deps_version],
     type = "zip",
     strip_prefix = "bazel-mvn-deps-%s" % bazel_mvn_deps_version
 )
-load("@bazel_mvn_deps_rule//resolver:bazel_mvn_deps_dependencies.bzl", "generate_bazel_mvn_deps_workspace_rules")
+
+load("@bazel_mvn_deps_rule//resolver/main_deps:dependencies.bzl", generate_bazel_mvn_deps_workspace_rules = "generate_workspace_rules")
 generate_bazel_mvn_deps_workspace_rules()
 
 # Clients deps
 # Android
-load("//clients/android:resolved_main_dependencies.bzl", "generate_android_main_workspace_rules")
+load("//clients/android/main_deps:dependencies.bzl", generate_android_main_workspace_rules = "generate_workspace_rules")
 generate_android_main_workspace_rules()
 
 # JUnit 5
-load("//tests:resolved_dependencies.bzl", "generate_junit5_deps_workspace_rules")
+load("//tests/junit5_deps:dependencies.bzl", generate_junit5_deps_workspace_rules = "generate_workspace_rules")
 generate_junit5_deps_workspace_rules()

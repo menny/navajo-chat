@@ -4,14 +4,15 @@ android_library(
     deps = [
         "//clients/android/parent",
         "//clients/android/theme",
-        "//clients/android:android___androidx_annotation__annotation",
-        "//clients/android:android___com_github_menny_Chauffeur__permissions",
-        "//clients/android:android___androidx_fragment__fragment",
-        "//clients/android:android___androidx_appcompat__appcompat",
+        "//clients/android:main_deps___androidx_annotation__annotation",
+        "//clients/android:main_deps___com_github_menny_Chauffeur__permissions",
+        "//clients/android:main_deps___androidx_fragment__fragment",
+        "//clients/android:main_deps___androidx_appcompat__appcompat",
+        "//clients/android:main_deps___androidx_constraintlayout__constraintlayout",
 
         "//clients/android/welcome/bl",
         "//clients/android/mobius",
-        "//clients/android:android___com_spotify_mobius__mobius_android"
+        "//clients/android:main_deps___com_spotify_mobius__mobius_android"
     ],
     custom_package = "net.evendanan.navajo.welcome.ui",
     resource_files = glob(["res/**/*.xml"]),

@@ -2,7 +2,7 @@ android_library(
     name = "theme",
     visibility = ["//visibility:public"],
     resource_files = glob(["res/**/*"]),
-    deps = ["//clients/android:android___androidx_appcompat__appcompat"],
+    deps = ["//clients/android:main_deps___androidx_appcompat__appcompat"],
     custom_package = "net.evendanan.navajo.theme",
     manifest = "AndroidManifest.xml"
 )

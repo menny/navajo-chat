@@ -8,11 +8,11 @@ android_binary(
     deps = [
         "//clients/android/parent",
         "//clients/android/theme",
-        "//clients/android:android___androidx_appcompat__appcompat",
+        "//clients/android:main_deps___androidx_appcompat__appcompat",
         "//clients/android/welcome/ui",
-        "//clients/android:android___androidx_annotation__annotation",
-        "//clients/android:android___com_github_menny_Chauffeur__permissions",
-        "//clients/android:android___androidx_fragment__fragment",
+        "//clients/android:main_deps___androidx_annotation__annotation",
+        "//clients/android:main_deps___com_github_menny_Chauffeur__permissions",
+        "//clients/android:main_deps___androidx_fragment__fragment",
     ],
     manifest_values = {
         "versionCode" : "1",

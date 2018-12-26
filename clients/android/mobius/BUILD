@@ -6,10 +6,10 @@ kt_jvm_library(
     visibility = ["//visibility:public"],
     srcs = glob(["src/**/*.kt"]),
     deps = [
-        "//clients/android:android___com_spotify_mobius__mobius_core",
+        "//clients/android:main_deps___com_spotify_mobius__mobius_core",
     ],
     exports = [
-        "//clients/android:android___com_spotify_mobius__mobius_core",
+        "//clients/android:main_deps___com_spotify_mobius__mobius_core",
     ]
 )
 

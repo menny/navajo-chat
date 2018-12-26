@@ -5,9 +5,10 @@ ANDROID_MAIN_DEPENDENCIES = [
 
         'com.github.menny.Chauffeur:permissions:90e7032',
 
-        'androidx.fragment:fragment:1.1.0-alpha01',
+        'androidx.fragment:fragment:1.1.0-alpha02',
         'androidx.appcompat:appcompat:1.0.2',
         'androidx.annotation:annotation:1.0.0',
+        'androidx.constraintlayout:constraintlayout:1.1.3',
 
         'io.reactivex.rxjava2:rxjava:2.2.4',
         'io.reactivex.rxjava2:rxandroid:2.1.0',

@@ -16,5 +16,5 @@ kt_junit5_test(
     visibility = ["//visibility:public"],
     srcs = ["tests/LoopTests.kt"],
     test_class = "net.evendanan.navajo.welcome.bl.tests.LoopTests",
-    deps = ["//clients/android:android___com_spotify_mobius__mobius_core"]
+    deps = ["//clients/android:main_deps___com_spotify_mobius__mobius_core"]
 )

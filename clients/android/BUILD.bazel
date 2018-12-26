@@ -1,13 +1,16 @@
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_import", "kt_jvm_library")
 
-load(":resolved_main_dependencies.bzl", "generate_android_main_transitive_dependency_rules")
+#load(":resolved_main_dependencies.bzl", "generate_android_main_transitive_dependency_rules")
+#generate_android_main_transitive_dependency_rules(kt_jvm_import = kt_jvm_import, kt_jvm_library = kt_jvm_library)
+
+load("//clients/android/main_deps:dependencies.bzl", generate_android_main_transitive_dependency_rules = "generate_transitive_dependency_targets")
 generate_android_main_transitive_dependency_rules(kt_jvm_import = kt_jvm_import, kt_jvm_library = kt_jvm_library)
 
 load("@bazel_mvn_deps_rule//rules/maven_deps:maven_deps_workspace_generator.bzl", "deps_workspace_generator_rule")
 load(":maven_dependencies.bzl", "ANDROID_MAIN_DEPENDENCIES")
 
 # Regenerate resolved dependencies file: bazel run //clients/android:android_main_deps
-deps_workspace_generator_rule(name = 'android_main_deps',
+deps_workspace_generator_rule(name = 'main_deps',
     maven_deps = ANDROID_MAIN_DEPENDENCIES,
     repositories = [
                 'https://maven.google.com/',
@@ -18,6 +21,4 @@ deps_workspace_generator_rule(name = 'android_main_deps',
     maven_exclude_deps = [
         'com.android.support'
     ],
-    output_deps_file_path = 'clients/android/resolved_main_dependencies.bzl',
-    rule_prefix = 'android',
-    macro_prefix = 'android_main')
+)

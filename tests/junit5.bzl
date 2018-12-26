@@ -30,8 +30,8 @@ JUNIT_MAVEN_DEPS = \
     JUNIT_EXTRA_DEPENDENCIES
 
 RESOLVED_JUNIT_MAVEN_DEPS = \
-    ['//tests:junit5___{}__{}'.format(JUNIT_JUPITER_GROUP_ID.replace('.', '_'), artifact.replace('-', '_')) for artifact in JUNIT_JUPITER_ARTIFACT_ID_LIST] + \
-    ['//tests:junit5___{}__{}'.format(JUNIT_PLATFORM_GROUP_ID.replace('.', '_'), artifact.replace('-', '_')) for artifact in JUNIT_PLATFORM_ARTIFACT_ID_LIST]
+    ['//tests:junit5_deps___{}__{}'.format(JUNIT_JUPITER_GROUP_ID.replace('.', '_'), artifact.replace('-', '_')) for artifact in JUNIT_JUPITER_ARTIFACT_ID_LIST] + \
+    ['//tests:junit5_deps___{}__{}'.format(JUNIT_PLATFORM_GROUP_ID.replace('.', '_'), artifact.replace('-', '_')) for artifact in JUNIT_PLATFORM_ARTIFACT_ID_LIST]
 
 def java_junit5_test(name, srcs, test_class = None, deps = [], runtime_deps = [], **kwargs):
     FILTER_KWARGS = [

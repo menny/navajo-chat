@@ -3,14 +3,14 @@ java_library(
     name = "parent",
     visibility = ['//visibility:public'],
     exports = [
-        "//clients/android:android___com_google_guava__guava",
-        "//clients/android:android___com_google_code_findbugs__jsr305",
-        "//clients/android:android___javax_annotation__jsr250_api",
+        "//clients/android:main_deps___com_google_guava__guava",
+        "//clients/android:main_deps___com_google_code_findbugs__jsr305",
+        "//clients/android:main_deps___javax_annotation__jsr250_api",
         
-#        "//clients/android:android___io_reactivex_rxjava2__rxjava",
-#        "//clients/android:android___com_spotify_mobius__mobius_core",
-#        "//clients/android:android___com_spotify_mobius__mobius_rx2",
-#        "//clients/android:android___com_spotify_mobius__mobius_extras",
+#        "//clients/android:main_deps___io_reactivex_rxjava2__rxjava",
+#        "//clients/android:main_deps___com_spotify_mobius__mobius_core",
+#        "//clients/android:main_deps___com_spotify_mobius__mobius_rx2",
+#        "//clients/android:main_deps___com_spotify_mobius__mobius_extras",
                         
     ]
 )
@@ -21,14 +21,14 @@ java_library(
 #    exports = [
 #        ":parent-java",
 #
-#        "//clients/android:android___com_github_menny_Chauffeur__permissions",
+#        "//clients/android:main_deps___com_github_menny_Chauffeur__permissions",
 #
-#        "//clients/android:android___androidx_fragment__fragment",
-#        "//clients/android:android___androidx_appcompat__appcompat",
-#        "//clients/android:android___androidx_annotation__annotation",
+#        "//clients/android:main_deps___androidx_fragment__fragment",
+#        "//clients/android:main_deps___androidx_appcompat__appcompat",
+#        "//clients/android:main_deps___androidx_annotation__annotation",
 #
-#        "//clients/android:android___io_reactivex_rxjava2__rxandroid",
+#        "//clients/android:main_deps___io_reactivex_rxjava2__rxandroid",
 #
-#        "//clients/android:android___com_spotify_mobius__mobius_android",
+#        "//clients/android:main_deps___com_spotify_mobius__mobius_android",
 #    ],
 #)
